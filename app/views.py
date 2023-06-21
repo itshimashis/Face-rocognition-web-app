@@ -5,7 +5,7 @@ from flask import render_template, request
 import matplotlib.image as matimg
 
 
-UPLOAD_FOLDER = '4_Flask_App/static/upload'
+UPLOAD_FOLDER = '/static/upload'
 
 def index():
     return render_template('index.html')
@@ -25,7 +25,7 @@ def genderapp():
         # get predictions
         pred_image, predictions = faceRecognitionPipeline(path)
         pred_filename = 'prediction_image.jpg'
-        cv2.imwrite(f'./4_Flask_App/static/predict/{pred_filename}',pred_image)
+        cv2.imwrite(f'./static/predict/{pred_filename}',pred_image)
         
         # generate report
         report = []
@@ -38,8 +38,8 @@ def genderapp():
             # save grayscale and eigne in predict folder
             gray_image_name = f'roi_{i}.jpg'
             eig_image_name = f'eigen_{i}.jpg'
-            matimg.imsave(f'./4_Flask_App/static/predict/{gray_image_name}',gray_image,cmap='gray')
-            matimg.imsave(f'./4_Flask_App/static/predict/{eig_image_name}',eigen_image,cmap='gray')
+            matimg.imsave(f'./static/predict/{gray_image_name}',gray_image,cmap='gray')
+            matimg.imsave(f'./static/predict/{eig_image_name}',eigen_image,cmap='gray')
             
             # save report 
             report.append([gray_image_name,
